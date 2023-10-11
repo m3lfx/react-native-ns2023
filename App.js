@@ -9,6 +9,7 @@ import store from "./Redux/store";
 import ProductContainer from './Screens/Product/ProductContainer';
 import Header from './Shared/Header';
 import Main from './Navigators/Main';
+import Toast from "react-native-toast-message";
 const newColorTheme = {
   brand: {
     900: "#8287af",
@@ -24,6 +25,7 @@ export default function App() {
         <NavigationContainer>
           <Header />
           <Main />
+          <Toast />
           
         </NavigationContainer>
       </NativeBaseProvider>
