@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Dimensions, FlatList, StyleSheet, TouchableOpacity, TouchableHighlight, Pressable } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigation } from '@react-navigation/native';
-import * as actions from '../../Redux/Actions/cartActions'
+import {clearCart, removeFromCart} from '../../Redux/Actions/cartActions'
 import {
     Container,
     Text,
@@ -66,7 +66,7 @@ const Cart = (props) => {
 
     const renderHiddenItem = (cartItems) => 
         <TouchableOpacity
-            onPress={() => dispatch(actions.removeFromCart(cartItems.item))}
+            onPress={() => dispatch(removeFromCart(cartItems.item))}
         >
             {/* <View style={styles.hiddenContainer}  > */}
                 {/* <Center style={styles.hiddenContainer}> */}
@@ -112,7 +112,7 @@ const Cart = (props) => {
                     <Text style={styles.price}>$ {total.toFixed(2)}</Text>
                 </HStack>
                 <HStack justifyContent="space-between">
-                    <Button alignItems="center" onPress={() => dispatch(actions.clearCart())} > Clear</Button>
+                    <Button alignItems="center" onPress={() => dispatch(clearCart())} > Clear</Button>
                 </HStack>
                 <HStack justifyContent="space-between">
                     {/* <Button alignItems="center" colorScheme="primary">Check Out</Button> */}

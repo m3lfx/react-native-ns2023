@@ -50,7 +50,7 @@ const Main = () => {
                                 size={30}
 
                             />
-                            {/* <CartIcon /> */}
+                            <CartIcon />
                         </>)
                     }
                 }}
