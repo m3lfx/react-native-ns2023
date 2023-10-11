@@ -1,17 +1,16 @@
 import React, {useState, useEffect} from "react";
-import { Image, View, StyleSheet, Text, ScrollView, Button } from "react-native";
-import {Left, Right, Container, H1, Center} from 'native-base'
+import { Image, View, StyleSheet, Text, ScrollView } from "react-native";
+import {Box, HStack, Container, H1, Center, Heading, Button} from 'native-base'
 
-const SingleProduct = ({route}) => {
-    const [item, setItem] = useState(route.params.item);
-    console.log(item)
+const SingleProduct = (props) => {
+    const [item, setItem] = useState(props.route.params.item);
     const [availability, setAvailability] = useState('')
-
+   
     return (
+        
         <Center flexGrow={1}>
             <ScrollView style={{marginBottom: 80, padding: 5}}>
                 <View>
-                    {/* <Text>{item.name}</Text> */}
                     <Image 
                         source={{
                             uri: item.image ? item.image : 'https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png'
@@ -19,10 +18,49 @@ const SingleProduct = ({route}) => {
                         resizeMode="contain"
                         style={styles.image}
                     />
-                        
                 </View>
+                
+                <View style={styles.contentContainer}>
+                    <Heading style={styles.contentHeader} size='xl'>{item.name}</Heading>
+                    <Text style={styles.contentText}>{item.brand}</Text>
+                </View>
+                {/* <View style={styles.availabilityContainer}>
+                    <View style={styles.availability}>
+                        <Text style={{ marginRight: 10 }}>
+                            Availability: {availabilityText}
+                        </Text>
+                        {availability}
+                    </View>
+                    <Text>{item.description}</Text>
+                </View> */}
             </ScrollView>
-        
+            <View style={styles.bottomContainer}>
+                <HStack space={3} justifyContent="center">
+                    <Text style={styles.price}>${item.price}</Text>
+                    <Button size="sm" >Add</Button>
+                </HStack>
+                {/* <HStack alignSelf="right">
+                    <Button size="sm" >Add</Button>
+                </HStack> */}
+               
+                {/* <Right>
+                   <EasyButton 
+                   primary
+                   medium
+                   onPress={() => {props.addItemToCart(item.id),
+                        Toast.show({
+                            topOffset: 60,
+                            type: "success",
+                            text1: `${item.name} added to Cart`,
+                            text2: "Go to your cart to complete order"
+                        })
+                }}
+                   >
+                       <Text style={{ color: 'white'}}>Add</Text>
+                   </EasyButton>
+                   <Button>Add</Button>
+                </Right>  */}
+            </View>
         </Center>
     )
 }
@@ -31,7 +69,7 @@ const styles = StyleSheet.create({
     container: {
         position: 'relative',
         height: '100%',
-    
+        // 
     },
     imageContainer: {
         backgroundColor: 'white',
